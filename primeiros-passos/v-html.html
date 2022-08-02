@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretivas v-if e v-else</title>
+    <title>Diretivas v-show</title>
 </head>
 <body>
 
     <div id="directives">
-        <h1 v-if="show">Hcode Treinamentos </h1>
 
-        <h3 key="available" v-if="tickets >= 50">Há ingressos disponíveis!</h3>
-
-        <h3 key="almost" v-else-if="tickets >= 1">Os ingressos quase acabando...</h3>
-
-        <h3 key="empty" v-else>Os ingressos acabaram!</h3>
+        <div v-html="headerHTML"></div>
        
     </div>
 
@@ -27,8 +22,13 @@
         let app = new Vue({
             el: "#directives",
             data: {
-                show: true,
-                tickets: 100
+               headerHTML: `
+                    <header>
+                        <h1 style="text-align: center;"> Hcode Treinamentos</h1>
+
+                        <img src="./assets/logo-hcode.svg" style="margin: auto 30%">
+                    </header>
+               `
             },
             
         })
