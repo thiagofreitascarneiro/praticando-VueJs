@@ -4,21 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diretivas v-bind</title>
+    <title>Diretivas v-slot</title>
 </head>
 <body>
 
     <div id="directives">
-
-        <h2>Acesse o site abaixo</h2>
-
-        <a v-bind:href="url"> Site da Hcode</a>
-
-        <p :[arg]="value"> Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-            Numquam itaque pariatur quibusdam cupiditate quisquam nostrum ex odit, 
-            similique autem totam, ea quia. Hic maxime ut ea magnam ex, eveniet 
-            explicabo?</p>
-
+      
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
@@ -26,13 +17,19 @@
     <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
 
     <script>
+
+        Vue.component('text-component', {
+            template: `
+                <div>
+            `
+        })
+
         let app = new Vue({
             el: "#directives",
             data: {
-                url: 'https://www.hcode.com.br',
-                arg: 'title',
-                value: 'Páragrafo de exemplo.'
+              
             }, 
+            
         })
 
     </script>
