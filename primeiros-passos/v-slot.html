@@ -9,6 +9,24 @@
 <body>
 
     <div id="directives">
+
+        <text-component>
+            <template v-slot:header>
+                <h2>Cabeçalho do site.</h2>
+            </template>
+            Gláucio Daniel
+        </text-component>
+
+        <text-component>
+            <template #paragrafo>
+                João Rangel
+            </template>
+            
+        </text-component>
+
+        <text-component>
+            Manoel
+        </text-component>
       
     </div>
 
@@ -21,6 +39,14 @@
         Vue.component('text-component', {
             template: `
                 <div>
+                    <header>
+                        <slot name="header">
+                        </slot>
+                    </header>
+                    <p>
+                        <slot name="paragrafo"></slot>
+                    </p>
+                </div>
             `
         })
 
