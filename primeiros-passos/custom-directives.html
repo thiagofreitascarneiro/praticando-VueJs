@@ -13,7 +13,7 @@
 
         <h4 v-upper>{{name}}</h4>
 
-        <h2 v-capitalize> Hello World super Mario </h2>
+        <h2 v-capitalize> Hello World super {{ name}} </h2>
         
     </div>
 
@@ -36,17 +36,33 @@
                name: 'Hcode'
             }, 
             directives: {
-                capitalize: function(element) {
-                    let words = element.innerText.split(' ');
+                capitalize: {
+                    bind(element) {
+                        console.log('BIND - fui vinculado a um elemento');
+                    },
+                    inserted(element) {
+                        let words = element.innerText.split(' ');
 
-                    words.forEach((text, index) => {
+                        words.forEach((text, index) => {
 
                         words[index] = text.charAt(0).toUpperCase() + 
                         text.slice(1);
-                        
+    
                     });
 
-                    element.innerText = words.join(' ');
+                        element.innerText = words.join(' ');
+                    },
+                    update(element) {
+                        console.log('UPDATED - elemento foi atualizado');
+                    },
+                    unbind(element) {
+                        console.log('UNBIND - O elemento foi desvinculado');
+                    },
+                    componentUpdated(element) {
+                        console.log('COMPONENT - O componente foi atualizado.')
+                    }
+
+                  
                 }
             }
         })
