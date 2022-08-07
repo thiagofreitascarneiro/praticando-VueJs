@@ -14,12 +14,16 @@
         <h4 v-upper>{{name}}</h4>
 
         <h2 v-capitalize> Hello World super {{ name}} </h2>
+
+        <h2 v-custom:parametro.mod1.mod2="'Informação'">  {{ name }} </h2>
+
+        <h2 v-custom:left="150">{{name}}</h2>
         
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-directives/dist/vue2-filters.min.js"></script>
 
     <script>
 
@@ -29,6 +33,31 @@
                     el.innerText = el.innerText.toUpperCase();
                 }
             })
+
+            function setDirection(element, binding) {
+                
+                element.style.margin = 0;
+
+                let direction = binding.arg.toLowerCase();
+                let value = binding.value;
+
+                switch(direction) {
+
+                    case 'left':
+                    case 'right':
+                    case 'bottom':
+                    case 'top':
+
+                        let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1)
+
+                        
+                        eval(`element.style.margin${newDirection} = value + 'px'`);
+
+                    default: console.error('Informe uma opção correta.')
+                }
+
+                console.log(element, binding)
+            }
        
             let app = new Vue({
             el: "#directives",
@@ -60,9 +89,23 @@
                     },
                     componentUpdated(element) {
                         console.log('COMPONENT - O componente foi atualizado.')
-                    }
+                    },               
+                },
+                custom: {
+                    bind(element, binding, vnode) {
 
-                  
+                        console.log(vnode);
+
+                        element.style.color = 'red';
+
+                        setDirection(element, binding);
+                    },
+                    update(element, binding, vnode, oldvnode) {
+
+                        console.log(vnode, oldvnode);
+
+                        element.style.textDecoration = 'underline'
+                    }
                 }
             }
         })
