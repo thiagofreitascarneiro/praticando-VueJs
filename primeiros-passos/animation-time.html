@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Animações CSS -duração</title>
+        <link rel="stylesheet" href="node_modules/animate.css/animate.min.css">
+    </head>
+    <body>
+
+        <div id="transitions">
+
+            <transition
+                name="animation-first"
+                :duration= "{enter: 800, leave: 100}"
+                enter-active-class="rollIn"
+                leave-active-class="zoomOut"
+                
+            >
+                <h2 v-if="show">Djalma, bora gravar!</h2>
+            </transition>
+
+            <button @click="show = !show">Realizar a animação</button>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#transitions',
+                data: {
+                    show: true
+                },
+            })
+
+        </script>
+
+    </body>
+</html>
